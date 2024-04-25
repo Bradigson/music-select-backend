@@ -3,7 +3,7 @@ const routers = require("./routes/router");
 
 const app = express();
 
-app.set('PORT', process.env.PORT || 3000);
+app.set('PORT', process.env.PORT || 2000);
 
 app.use(express.json());
 

@@ -17,6 +17,6 @@ COPY . .
 #     ./aws/install && \
 #     rm awscliv2.zip
 
-EXPOSE 3000
+EXPOSE 2000
 
 CMD [ "npm", "start" ]
