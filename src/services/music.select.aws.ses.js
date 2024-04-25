@@ -3,20 +3,24 @@ const {config} = require("dotenv");
 config();
 require("aws-sdk/lib/maintenance_mode_message").suppress = true;
 
-console.log("tt" + process.env.AWS_ACCESS_KEY_ID);
+console.log("tt:" + process.env.AWS_ACCESS_KEY_ID);
+console.log("tt:" + process.env.AWS_SECRET_ACCESS_KEY);
+console.log("tt:" + process.env.AWS_REGION);
+console.log("tt:" + process.env.AWS_EMAIL)
 //stas son las crdenciales del IAM
 const aws_configure = 
 {
     accessKeyId : process.env.AWS_ACCESS_KEY_ID,
-    secreteAccessKey : process.env.AWS_SECRET_ACCESS_KEY,
+    secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_REGION,
 }
 
 
 const aws_config = new aws.SES(aws_configure);
 
-const sendEmail = async(email, name, musics)=>
+const sendEmail = async(musics)=>
 {
+   
     //let data = musics
 
     const musicItems = musics.map(song => `<li>${song.song}</li>`).join('');
@@ -29,10 +33,10 @@ const sendEmail = async(email, name, musics)=>
 
 
     let params = {
-        Source : email,
+        Source : process.env.AWS_EMAIL,
         Destination:{
             ToAddresses:[
-                email
+                process.env.AWS_EMAIL
             ]
         },
         ReplyToAddresses:[],

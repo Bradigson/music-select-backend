@@ -7,7 +7,7 @@ class MusicSelectController
         try 
         {
             let listMusic = req.body;
-            let response = await sendEmail("bradigson@gmail.com", "Samuel", listMusic);
+            let response = await sendEmail(listMusic);
             return res
             .status(200)
             .send({
@@ -18,6 +18,7 @@ class MusicSelectController
 
         } catch (err) 
         {
+            console.log(err)
             return res.status(500).send({
                 code:500,
                 message : err
